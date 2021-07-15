@@ -1,0 +1,129 @@
+/*
+ * main.cpp
+ *
+ *  Created on: 2018年2月3日
+ *      Author: 死神柯南
+ */
+
+#include <iostream>
+using namespace std;
+
+//class A{
+//private:
+//	int i;
+//	int k;
+//public:
+//	void f();
+//};
+//
+//void A::f()
+//{
+//	int j = 10;
+//	i = 10;
+//	cout << &i << " " << &k <<" " << &j << endl;
+//}
+//
+//int main()
+//{
+//	A a;
+//	A b;
+//	a.f();
+//	b = a;
+//	b.f();
+//	return 0;
+//}
+
+//class A {
+//private:
+//	int i;
+//public:
+//	A() { i = 0; cout << "A::A()" << endl; }
+//	~A() { cout << "A::~A(), i = " << i << endl; }
+//	void set(int i) { this->i = i; }
+//	void f() { cout << "Hello" << endl; }
+//};
+//
+//int main()
+//{
+//	A* p = new A[10];
+//	for( int i = 0; i < 10; i++)
+//	{
+//		p[i].set(i);
+//	}
+//	delete [] p;
+//
+//	return 0;
+//}
+//
+//struct X;
+//
+//struct Y {
+//	void f(X* );
+//};
+//
+//struct X {
+//private:
+//	int i;
+//public:
+//	void initialize();
+//	friend void g(X*, int);
+//	friend void Y::f(X*);
+//	friend struct Z;
+//	friend void h();
+//	void F(X* x) { x->i = 10; }
+//};
+//
+//void X::initialize()
+//{
+//	i = 0;
+//}
+//
+//void g(X* x, int i)
+//{
+//	x->i = i;
+//}
+//
+//void Y::f(X* x)
+//{
+//	x->i = 47;
+//}
+//
+//int main()
+//{
+//	return 0;
+//}
+
+class A {
+public:
+	A(int ii): i(ii) { cout << "A::A()" << endl; }
+	~A() { cout << "A::~A()" << endl; }
+	void print() { cout << "A::f() " << i << endl; }
+	void print(int ii) { i = ii; }
+protected:
+	void set (int ii) { i = ii; }
+private:
+	int i;
+};
+
+class B : public A {
+public:
+	B() : A(15) { }
+	~B() { cout << "B::~B()" << endl; }
+	void f() {
+		set(20);
+//		i = 30;
+		print();
+	}
+	void print() { cout << "B::B()" << endl; }
+};
+
+int main()
+{
+	B b;
+//	b.set(10);
+	b.print();
+	b.f();
+//	b.print(200);
+
+	return 0;
+}

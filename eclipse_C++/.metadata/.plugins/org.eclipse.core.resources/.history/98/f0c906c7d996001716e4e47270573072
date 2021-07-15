@@ -1,0 +1,19 @@
+/*
+ * inheritance.cpp
+ *
+ *  Created on: 2017年9月11日
+ *      Author: 死神柯南
+ */
+
+#include <iostream>
+using namespace std;
+
+class A {
+private:
+	int i;
+public:
+	A():i(0) { cout << "A::A()" << endl; }
+	~A() { cout << "A::~A()" << endl;
+	void print() { cout << "A::f()" << i << endl; }
+	void set(int i) { this->i = i; }
+};

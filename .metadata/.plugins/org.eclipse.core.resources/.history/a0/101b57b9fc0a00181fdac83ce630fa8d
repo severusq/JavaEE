@@ -1,0 +1,471 @@
+/*
+ * main.cpp
+ *
+ *  Created on: 2018年2月3日
+ *      Author: 死神柯南
+ */
+
+#include <iostream>
+//using namespace std;
+
+//class A{
+//private:
+//	int i;
+//	int k;
+//public:
+//	void f();
+//};
+//
+//void A::f()
+//{
+//	int j = 10;
+//	i = 10;
+//	cout << &i << " " << &k <<" " << &j << endl;
+//}
+//
+//int main()
+//{
+//	A a;
+//	A b;
+//	a.f();
+//	b = a;
+//	b.f();
+//	return 0;
+//}
+
+//class A {
+//private:
+//	int i;
+//public:
+//	A() { i = 0; cout << "A::A()" << endl; }
+//	~A() { cout << "A::~A(), i = " << i << endl; }
+//	void set(int i) { this->i = i; }
+//	void f() { cout << "Hello" << endl; }
+//};
+//
+//int main()
+//{
+//	A* p = new A[10];
+//	for( int i = 0; i < 10; i++)
+//	{
+//		p[i].set(i);
+//	}
+//	delete [] p;
+//
+//	return 0;
+//}
+//
+//struct X;
+//
+//struct Y {
+//	void f(X* );
+//};
+//
+//struct X {
+//private:
+//	int i;
+//public:
+//	void initialize();
+//	friend void g(X*, int);
+//	friend void Y::f(X*);
+//	friend struct Z;
+//	friend void h();
+//	void F(X* x) { x->i = 10; }
+//};
+//
+//void X::initialize()
+//{
+//	i = 0;
+//}
+//
+//void g(X* x, int i)
+//{
+//	x->i = i;
+//}
+//
+//void Y::f(X* x)
+//{
+//	x->i = 47;
+//}
+//
+//int main()
+//{
+//	return 0;
+//}
+
+//class A {
+//public:
+//	A(int ii): i(ii) { cout << "A::A()" << endl; } // 成员函数这样写都是inline
+//	~A() { cout << "A::~A()" << endl; }
+//	void print() { cout << "A::f() " << i << endl; }
+//	void print(int ii) { i = ii; }
+//protected:
+//	void set (int ii) { i = ii; }
+//private:
+//	int i;
+//};
+//
+//class B : public A {
+//public:
+//	B() : A(15) { }
+//	~B() { cout << "B::~B()" << endl; }
+//	void f() {
+//		set(20);
+////		i = 30;
+//		print();
+//	}
+//	void print() { cout << "B::B()" << endl; }
+//};
+//
+//int main()
+//{
+//	B b;
+////	b.set(10);
+//	b.print();
+//	b.f();
+////	b.print(200);//父类有overloaded，子类又有重名的则只有子类那一个函数
+//	b.A::print(200);
+//	b.B::print();
+//
+//	return 0;
+//}
+
+//class Employee {
+//public:
+//	Employee( const std::string& name, const std::string& ssn);
+//	const std::string& get_name() const;//const告诉编译器此函数不会修改任何成员变量
+//	void print(std::ostream& out) const;
+//	void print(std::ostream& out, const std::string& msg) const;
+//protected:
+//	std::string m_name;
+//	std::string m_ssn;
+//};
+//
+//class Manager : public Employee {
+//public:
+//	Manager(const std::string& name, const std::string& ssn, const std::string& title);
+//	const std::string title_name() const;
+//	const std::string& get_title() const;
+//	void print(std::ostream& out) const;
+//private:
+//	std::string m_title;
+//};
+//
+//Employee::Employee( const std::string& name, const std::string& ssn ) : m_name(name), m_ssn(ssn)
+//{
+//
+//}
+//inline const std::string& Employee::get_name() const //inline函数放.h里面，以空间换时间
+//{
+//	return m_name;
+//}
+//
+//inline void Employee::print( std::ostream& out ) const
+//{
+//	out << m_name << std::endl;
+//	out << m_ssn << std::endl;
+//}
+//
+//inline void Employee::print( std::ostream& out, const std::string& msg) const
+//{
+//	out << msg << std::endl;
+//	print(out);
+//}
+//
+//Manager::Manager( const std::string& name, const std::string& ssn, const std::string& title = "")
+//: Employee(name, ssn), m_title(title)
+//{
+//
+//}
+//inline void Manager::print( std::ostream& out ) const{
+//	Employee::print(out);
+//	out << m_title << std::endl;
+//}
+//
+//inline const std::string& Manager::get_title() const {
+//	return m_title;
+//}
+//
+//inline const std::string Manager::title_name() const {
+//	return std::string( m_title + ": " + m_name);
+//}
+//
+//int main()
+//{
+//	Employee bob("Bob Jones", "555-44-0000");
+//	Manager bill("Bill Smith", "666-33-1234");
+//	std::string name = bill.get_name();
+//	std::cout << bill.title_name() << '\n' << std::endl;
+//	bill.print(std::cout);
+//	bob.print(std::cout);
+//	bob.print(std::cout, "Employee:");
+//	int x;
+//	std::cin >> x;
+////	const int size = x;
+////	int* p = new int [size];
+//
+//	return 0;
+//}
+
+using namespace std;
+
+//class A {
+//	const int i;
+//public:
+//	A(): i(0) {}
+//	void f() { cout << "f()" << endl; }
+//	void f() const { cout << "f() const" << endl; }
+//};
+//
+//int main()
+//{
+//	A a;
+//	a.f();
+//
+//	return 0;
+//}
+
+//int x = 9;
+//
+//int& h()
+//{
+//	int q = 0;
+//	return x;
+//}
+//
+//int main()
+//{
+//	int a = h();
+//	h() = 12;
+//	int y;
+//	int& aa = x;
+//	int& b = y;
+//	b= aa;//reference不能指向其他的对象，必须被初始化，不能被访问地址，没有reference的reference
+//	cout << a << endl;
+//	cout << x << endl;
+//	return 0;
+//}
+
+//class A {
+//public:
+//	int i;
+//	A() : i(10) {}
+//};
+//
+//class B : public A {
+//private:
+//	int j;
+//public:
+//	B() : j(30) {}
+//	void f() { cout << "b.j = " << j << endl; }
+//};
+//
+//int main()
+//{
+//	A a;
+//	B b;
+//
+//	cout << a.i << " " << b.i << endl;
+//	cout << sizeof(a) << " " << sizeof(b) << endl;
+//	int *p = (int *)&a;
+//	cout << p << " " << *p << endl;
+//	*p = 20;
+//	cout << a.i << endl;
+//	p = (int *)&b;
+//	cout << p << " " << *p << endl;
+//	p++;
+//	*p = 50;
+//	b.f();
+//
+//	A* q = b;//upcasting
+//	A &qq = b;//upcasting
+//
+//	return 0;
+//}
+
+//class A {
+//public:
+//	A() : i(10) {}
+//	virtual ~A() {};
+//	virtual void f() { cout << "A::f()" << i << endl; }
+//	virtual void h() { cout << "A::h()" << endl; }
+//	virtual void h(int ) { cout << "A::h(int)" << endl; }
+//	void g() {}
+//	int i;
+//};
+//
+//class B: public A {
+//public:
+//	B() : j(20) {}
+//	virtual ~B() {};
+//	virtual void f() {  A::f(); cout << "B::()" << j << endl; }
+//	virtual void h() { cout << "B::h()" << endl; }
+//	virtual void h(int ) { cout << "B::h(int)" << endl; }
+//	int j;
+//};
+//
+//int main()
+//{
+//	A a;
+////	A b;
+//	B b;
+//	a.f();
+////	cout << sizeof(a) << endl;
+////	int *p = (int *)&a;
+////	int *q = (int *)&b;
+////	(*p)++;
+////	int *x = (int*)*q;
+////	cout << *p << *q << endl;
+////	cout << x << endl;
+//	A *p = &b;
+//	p->f();
+//	a = b;
+//	a.f();
+//	p = &a;
+//	p->f();
+//	int *t = (int*)&a;
+//	int *r = (int*)&b;
+//	cout << r << " " << t << endl;
+//	++r; ++t;
+//	b.i = 30;
+//	cout << *r << " " << *t << endl;
+//	--r; --t;
+//	*t = *r;
+//	p->f();
+//
+//	cout << a.i << endl;
+//	b.h();
+//	b.h(3);
+//	b.A::h();
+//	b.A::h(1);
+//
+//	return 0;
+//}
+
+//class A {
+//public:
+//	int i;
+//	A() : i(0) {}
+//};
+//
+//A f()
+//{
+//	A a;
+//	return a;
+//}
+//void f(const int &i)
+//{
+//	cout << i << endl;
+//}
+//
+//int main()
+//{
+//	int i = 3;
+//	f(i*3);
+////	f().i = 10;//不知道为什么不可以
+//
+//	return 0;
+//}
+
+//static int objectCount = 0;
+//
+//class HowMany {
+//public:
+//	HowMany() { objectCount++; print("HowMany()"); }
+//	HowMany(int i) { objectCount++; print("HowMany(int)"); }
+//	HowMany(const HowMany &o) {objectCount++; print("HowMan(HM)"); }//拷贝构造
+//	void print(const string& msg = "") {
+//		if(msg.size() != 0) cout << msg << ": ";
+//		cout << "objectCount = " << objectCount << endl;
+//	}
+//	~HowMany() {
+//		objectCount--;
+//		print("~HowMany");
+//	}
+//};
+//
+//HowMany f(HowMany x)
+//{
+//	cout << "begin of f" << endl;
+//	x.print("x argument inside f()");
+//	cout << "end of f" << endl;
+//
+//	return x;
+//}
+//
+//int main()
+//{
+//	HowMany h;
+//	h.print("after construction of f");
+//	HowMany h3 = 10;
+//	HowMany h2 = f(h);
+//	h.print("after call to f");
+//
+//	return 0;
+//}
+
+//#include <cstring>
+//
+//class Person {
+//public:
+//	Person(const char *s) { printf("Person()\n"); name = new char[::strlen(s) + 1];
+//	::strcpy(name, s);
+//	}
+//	Person(const Person& w) { printf("Person(const Person& w)\n"); name = new char[::strlen(w.name) +1];
+//	::strcpy(name, w.name);
+//	}
+//	~Person() { printf("~Person()\n"); delete [] name; }
+//	void print() {};
+//
+//	char *name;
+//};
+//
+//Person copy_func(const char *who)
+//{
+//	printf("inside copy_func()\n");
+//	Person local(who);
+//	local.print();
+//	return local;
+//}
+//
+//Person nocopy_func(const char *who)
+//{
+//	printf("inside nocopy_func()\n");
+//	return Person(who);
+//}
+//int main()
+//{
+//	int i(4);
+//	Person p1("John");
+//	Person p2(p1);
+////	cout << "p1.name=" << &p1.name << endl;
+////	cout << "p2.name=" << &p2.name << endl;
+//	Person p3 = copy_func("x");
+//	printf("after p3\n");
+//	Person p4 = nocopy_func("x");
+//	printf("p1.name=%p, p2.name=%p, p3.name=%p, p4.name=%p\n", p1.name, p2.name, p3.name, p4.name);
+//
+//	return 0;
+//}
+
+class A {
+public:
+	A() { i = 0; }//静态成员变量不能放在初始化列表当中
+	void print() {cout << i << endl; }
+	void set(int i) { this->i = i; }
+//private:
+	static int i;
+};
+
+int A::i = 20;//不能加static,作用域相违背
+
+int main()
+{
+	A a, b;
+	a.set(10);
+	b.print();
+	cout << a.i << endl;
+	cout << A::i << endl;
+
+	return 0;
+}
